@@ -148,6 +148,77 @@
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/6.1.png)
    
  - Untuk mengetest, pada setiap UML **Client** , restart semua networking dengan perintah `service networking restart`
+ # Jarkom_Modul3_Lapres_D06
+
+
+## Nomor 7
+
+Install squid dan apache utils di Mojokerto
+
+```dotnetcli
+apt-get install squid
+
+apt-get install apache2-utils
+```
+
+Buat users userta_d06 dengan apache2-utils htpasswd
+
+```dotnetcli
+htpasswd -c /etc/squid/passwd userta_d06
+```
+Ketika htpasswd dijalankan maka akan ada promtp untuk memasukan password. Masukan password untuk userta_d06 yaitu inipassw0rdta_d06
+
+Flag -c untuk mengcreate file hanya dibutuhkan saat pertama kali htpasswd dijalankan.
+
+Kemudian setting squid. Tapi pertama tama back up terlebih dahulu file squid.conf.
+```dotnetcli
+mv /etc/squid/squid.conf /etc/squid/squid.conf.bak
+```
+Buka file squid.conf
+```dotnetcli
+nano /etc/squid/squid.conf
+```
+Tambahkan konfigurasi berikut pada squid.conf
+
+```
+acl all src 0.0.0.0/0.0.0.0
+http_port 8080
+visible_hostname mojokerto
+
+# Nomor 7
+auth_param basic program /usr/lib/squid/ncsa_auth /etc/squid/passwd
+auth_param basic children 5
+auth_param basic realm Proxy
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive on
+acl USERS proxy_auth REQUIRED
+http_access allow USERS
+# End of Nomor 7
+```
+
+## Nomor 8
+Buat file untuk konfigurasi waktu disini kita beri nama acl.conf
+
+```dotnetcli
+nano /etc/squid/acl.conf
+```
+
+Tambahkan akses control untuk waktu
+
+```dotnetcli
+acl KERJATA time TW 13:00-18:00
+```
+
+Kemudian untuk membuat akses kontrol bekerja tambahkan pada squid.conf line berikut
+
+```dotnetcli
+include /etc/squid/acl.conf
+http_access allow USERS KERJATA
+http_access deny all
+```
+
+
+
 
 ## Soal 9
  **Membuat proxy hanya dapat diakses pada hari selasa sampai kamis jam 21.00-09.00(besok harinya)**
