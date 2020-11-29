@@ -8,61 +8,60 @@
   
   - Pertama pada `topologi.sh` dibuatkan setting sebagai berikut :
   ```
-# Switch
-uml_switch -unix switch1 > /dev/null < /dev/null &
-uml_switch -unix switch2 > /dev/null < /dev/null &
-uml_switch -unix switch3 > /dev/null < /dev/null &
+  # Switch
+  uml_switch -unix switch1 > /dev/null < /dev/null &
+  uml_switch -unix switch2 > /dev/null < /dev/null &
+  uml_switch -unix switch3 > /dev/null < /dev/null &
 
-# Router
-xterm -T SURABAYA -e linux ubd0=SURABAYA,jarkom umid=SURABAYA eth0=tuntap,,,10.151.78.29 eth1=daemon,,,switch1 eth2=daemon,,,switch3 eth3=daemon,,,switch2 mem=256M &
+  # Router
+  xterm -T SURABAYA -e linux ubd0=SURABAYA,jarkom umid=SURABAYA eth0=tuntap,,,10.151.78.29 eth1=daemon,,,switch1 eth2=daemon,,,switch3 eth3=daemon,,,switch2 mem=256M &
 
-# Server
-xterm -T MALANG -e linux ubd0=MALANG,jarkom umid=MALANG eth0=daemon,,,switch2 mem=160M &
-xterm -T MOJOKERTO -e linux ubd0=MOJOKERTO,jarkom umid=MOJOKERTO eth0=daemon,,,switch2 mem=128M &
-xterm -T TUBAN -e linux ubd0=TUBAN,jarkom umid=TUBAN eth0=daemon,,,switch2 mem=128M &
+  # Server
+  xterm -T MALANG -e linux ubd0=MALANG,jarkom umid=MALANG eth0=daemon,,,switch2 mem=160M &
+  xterm -T MOJOKERTO -e linux ubd0=MOJOKERTO,jarkom umid=MOJOKERTO eth0=daemon,,,switch2 mem=128M &
+  xterm -T TUBAN -e linux ubd0=TUBAN,jarkom umid=TUBAN eth0=daemon,,,switch2 mem=128M &
 
-# Klien
-xterm -T SIDOARJO -e linux ubd0=SIDOARJO,jarkom umid=SIDOARJO eth0=daemon,,,switch1 mem=64M &
-xterm -T GRESIK -e linux ubd0=GRESIK,jarkom umid=GRESIK eth0=daemon,,,switch1 mem=64M &
-xterm -T BANYUWANGI -e linux ubd0=BANYUWANGI,jarkom umid=BANYUWANGI eth0=daemon,,,switch3 mem=64M &
-xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 mem=64M &
-
-``` 
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.1.png)
+  # Klien
+  xterm -T SIDOARJO -e linux ubd0=SIDOARJO,jarkom umid=SIDOARJO eth0=daemon,,,switch1 mem=64M &
+  xterm -T GRESIK -e linux ubd0=GRESIK,jarkom umid=GRESIK eth0=daemon,,,switch1 mem=64M &
+  xterm -T BANYUWANGI -e linux ubd0=BANYUWANGI,jarkom umid=BANYUWANGI eth0=daemon,,,switch3 mem=64M &
+  xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 mem=64M &
+  ```   
+   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.1.png)
   
   - Kedua, pada UML **Surabaya** di-enable packet forwarding for IPv4 dengan cara di-**uncomment**, pada file `/etc/sysctl.conf`
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.2.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.2.png)
   
   - Ketiga, pada **setiap** UML dibuatkan interface baru pada file `/etc/network/interfaces` sebagai berikut:
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.3.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.3.png)
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.4.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.4.png)
  
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.5.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.5.png)
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.6.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.6.png)
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.7.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.7.png)
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.8.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.8.png)
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.9.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.9.png)
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.10.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.10.png)
   
   - Keempat, pada UML **Surabaya** dibuatkan file `iptables.sh`, sebagai berikut:
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.11.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.11.png)
   
   - Kelima, jalankan **iptables.sh** yang baru saja dibuat dengan `bash iptables.sh`
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.12.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.12.png)
   
   - Terakhir, pada **setiap** UML dibuatkan file `export.sh` sebagai berikut, dan dijalankan dengan ` . export.sh `
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.13.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.13.png)
   
 ## Soal 2
  **Membuat Surabaya menjadi sebagai perantara (DHCP Relay) antara DHCP Server dan client**
@@ -70,35 +69,35 @@ xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 me
  - Pertama, pada UML **Tuban** diinstall **DHCP Server** denggan perintah `apt-get install isc-dhcp-server`
  - Kedua, setelah selesai proses instalasi **DHCP Server** disetting file `/etc/default/isc-dhcp-server`
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.1.png)
+   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.1.png)
  
  - Ketiga, pada UML **Surabaya** diinstall **DHCP Relay** denggan perintah `apt-get install isc-dhcp-relay`
  - Keempat, setelah selesai proses instalasi **DHCP Relay** disetting file `/etc/default/isc-dhcp-relay`, dengan dimasukkannya IP Tuban dan interface yang digunakan
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.2.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.2.png)
   
  - Kelima, pada UML **Tuban**, ditambahkan **subnet NID_DMZ** pada file `/etc/dhcp/dhcp.conf`, seperti berikut:
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.3.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.3.png)
  
  - Keenam, pada setiap UML **Client**, dirubah semua interface yang static menjadi menggunakan **DHCP**, seperti berikut:
   
-  ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.4.png)
+    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.4.png)
   
  - Berikut ini adalah langkah **OPTIONAL**, apabila ingin membuat server merequest ip menggunakan *DHCP*, 
    - Pertama pada UML **Server**, cari **hardware access** dengan perintah `ifconfig` dan melihat pada bagian **HWaddr**
    
-   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.5.png)
+     ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.5.png)
    
-   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.6.png)
+     ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.6.png)
    
    - Kedua pada setiap UML **Server**, ditambahkan setting **interface** pada file `/etc/network/interfaces` sesuai **hardware address** masing-masing, sebagai berikut:
    
-   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.7.png)
+     ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.7.png)
    
-   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.8.png)
+     ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.8.png)
    
-   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.9.png)
+     ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.9.png)
    
    - Terakhir pada UML **Tuban**, di-Restart **DHCP Server** dengan perintah `service isc-dhcp-server restart`
 
@@ -189,7 +188,7 @@ xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 me
  - Terakhir, **pindah** ke directory revisi dengan **perintah** cd `revisi/` dan **download** custom error page dengan perintah `wget -N 10.151.36.202/ERR_ACCESS_DENIED`
  - Testing
  
- ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/11.1.png)
+   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/11.1.png)
 
 ## Soal 12
  **Membuat apabila ingin menggunakan proxy cukup dengan mengetikkan domain janganlupa-ta.d06.pw dan memasukkan port 8080.**
