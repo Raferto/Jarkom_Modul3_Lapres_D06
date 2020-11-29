@@ -7,6 +7,7 @@
  **Membuat Topologi jaringan dengan; Surabaya sebagai router, Malang sebagai DNS Server, Tuban sebagai DHCP server, Mojokerto sebagai Proxy server, serta Sidoarjo, Gresik, Banyuwangi, dan Madiun sebagai Client**
   
   - Pertama pada `topologi.sh` dibuatkan setting sebagai berikut :
+  
   ```
   # Switch
   uml_switch -unix switch1 > /dev/null < /dev/null &
@@ -27,6 +28,7 @@
   xterm -T BANYUWANGI -e linux ubd0=BANYUWANGI,jarkom umid=BANYUWANGI eth0=daemon,,,switch3 mem=64M &
   xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 mem=64M &
   ```   
+
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/1.1.png)
   
   - Kedua, pada UML **Surabaya** di-enable packet forwarding for IPv4 dengan cara di-**uncomment**, pada file `/etc/sysctl.conf`
