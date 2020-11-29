@@ -148,6 +148,49 @@ xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 me
    
  - Untuk mengetest, pada setiap UML **Client** , restart semua networking dengan perintah `service networking restart`
 
+## Soal 9
+ **Membuat proxy hanya dapat diakses pada hari selasa sampai kamis jam 21.00-09.00(besok harinya)**
+ 
+ - Pertama, pada UML **Mojokerto**, ditambahkan setting waktu sebagai berikut pada file `/etc/squid/acl.conf`
+   ```
+   acl BIMBINGAN time TWH 21:00-23:59
+   acl BIMBINGANN time WHF 00:00-09:00
+   ```
+   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/9.1.png)
+
+ - Kedua, pada UML **Mojokerto**, ditambahkan setting sebagai berikut pada file `/etc/squid/squid.conf`
+   ```
+   http_access allow USERS BIMBINGAN
+   http_access allow USERS BIMBINGANN
+   ```
+   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/9.2.png)
+   
+## Soal 10
+ **Membuat apabila mengakses google.com, maka akan di redirect menuju monta.if.its.ac.id**
+ 
+ - Pertama, pada UML **Mojokerto**, tambahkan `google.com` pada file `/etc/squid/ban.acl`
+   
+   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/10.1.png)
+ 
+ - Kedua, pada UML **Mojokerto**, tambahkan config sebagai berikut pada file `/etc/squid/squid.conf`
+   ```
+   acl RED url_regex "/etc/squid/ban.acl"
+   deny_info http://monta.if.its.ac.id/ RED
+   http_access deny RED
+   ```
+   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/10.2.png)
+   
+## Soal 11
+ **Mengubah error page default squid**
+ 
+ - Pertama, pada UML **Mojokerto** ditambahkan **error_directory** dengan menambahkan setting `error_directory /usr/share/squid/errors/revisi` pada file `/etc/squid/squid.conf`
+ - Kedua, Buat **directory** yang sudah dimasukkan tadi dengan perintah `mkdir /usr/share/squid/errors/revisi`
+ - Ketiga, **pindah** ke directory **squid error** dengan perintah `cd /usr/share/squid/errors` dan **copy** semua file dari template ke revisi dengan perintah `cp -r templates/* revisi/`
+ - Terakhir, **pindah** ke directory revisi dengan **perintah** cd `revisi/` dan **download** custom error page dengan perintah `wget -N 10.151.36.202/ERR_ACCESS_DENIED`
+ - Testing
+ 
+ ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/11.1.png)
+
 ## Soal 12
  **Membuat apabila ingin menggunakan proxy cukup dengan mengetikkan domain janganlupa-ta.d06.pw dan memasukkan port 8080.**
  
@@ -166,5 +209,7 @@ xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 me
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/12.2.png)
    
  - Hasil Test:
+ 
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/12.3.png)
+   
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/12.4.png)
