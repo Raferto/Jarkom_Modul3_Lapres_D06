@@ -92,7 +92,7 @@ xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 me
    
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.6.png)
    
-  - Kedua pada setiap UML **Server**, ditambahkan setting **interface** pada file `/etc/network/interfaces` sesuai **hardware address** masing-masing, sebagai berikut:
+   - Kedua pada setiap UML **Server**, ditambahkan setting **interface** pada file `/etc/network/interfaces` sesuai **hardware address** masing-masing, sebagai berikut:
    
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.7.png)
    
@@ -100,7 +100,7 @@ xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 me
    
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/2.9.png)
    
-  - Terakhir pada UML **Tuban**, di-Restart **DHCP Server** dengan perintah `service isc-dhcp-server restart`
+   - Terakhir pada UML **Tuban**, di-Restart **DHCP Server** dengan perintah `service isc-dhcp-server restart`
 
 ## Soal 3
  **Membuat Client pada subnet 1 mendapatkan range IP dari 192.168.0.10 sampai 192.168.0.100 dan 192.168.0.110 sampai 192.168.0.200**
