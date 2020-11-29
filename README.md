@@ -148,8 +148,6 @@
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/6.1.png)
    
  - Untuk mengetest, pada setiap UML **Client** , restart semua networking dengan perintah `service networking restart`
- # Jarkom_Modul3_Lapres_D06
-
 
 ## Nomor 7
 
@@ -285,3 +283,9 @@ http_access deny all
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/12.3.png)
    
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/12.4.png)
+
+## Note
+- Untuk mengatur akses kontrol dari soal 7-12 diperlukan penyesuaian lanjutan
+- Pada konfigurasi Squid akses kontrol list (access control list/acl) pada http_access yang berbeda line (beda http_access) akan dievaluasi dengan OR sementara http_access dengan beberapa acl akan dikenakan operasi AND untuk tiap acl nya.
+- Konfigurasi final pada suid.conf adalah sebagai berikut
+![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/Note.1.png)
