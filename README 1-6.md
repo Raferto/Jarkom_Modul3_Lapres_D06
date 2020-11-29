@@ -103,7 +103,7 @@ xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 me
   - Terakhir pada UML **Tuban**, di-Restart **DHCP Server** dengan perintah `service isc-dhcp-server restart`
 
 ## Soal 3
- **Membuat Client pada subnet 1 mendapatkan range IP dari 192.168.0.10 sampai 192.168.0.100 dan 192.168.0.110 sampai 192.168.0.200.**
+ **Membuat Client pada subnet 1 mendapatkan range IP dari 192.168.0.10 sampai 192.168.0.100 dan 192.168.0.110 sampai 192.168.0.200**
  
  - Caranya adalah pada UML **Tuban** disetting pada file `/etc/dhcp/dhcpd.conf` dengan menambah range yang sesuai untuk semua Client dengan subnet 1.
  
@@ -115,3 +115,35 @@ xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 me
    
    ![p](https://github.com/Raferto/Jarkom_Modul2_Lapres_D06/blob/main/images/3.3.png)
  
+## Soal 4
+ **Membuat Client pada subnet 3 mendapatkan range IP dari 192.168.1.50 sampai 192.168.1.70**
+ 
+ - Caranya adalah pada UML **Tuban** disetting pada file `/etc/dhcp/dhcpd.conf` dengan menambah range yang sesuai untuk semua Client dengan subnet 3.
+ 
+   ![p](https://github.com/Raferto/Jarkom_Modul2_Lapres_D06/blob/main/images/4.1.png)
+
+ - Untuk mengetest, pada UML Client dengan subnet 3, yaitu **Banyuwangi** dan **Madiun**, jalankan perintah `ifconfig`
+ 
+   ![p](https://github.com/Raferto/Jarkom_Modul2_Lapres_D06/blob/main/images/3.2.png)
+   
+   ![p](https://github.com/Raferto/Jarkom_Modul2_Lapres_D06/blob/main/images/3.3.png)
+   
+## Soal 5
+ **Membuat Client mendapatkan DNS Malang dan DNS 202.46.129.2 dari DHCP**
+ 
+ - Caranya adalah pada UML **Tuban** disetting pada file `/etc/dhcp/dhcpd.conf` dengan menambahkan `option domain-name-serves` sesuai rangenya pada subnet 1 dan 3
+ 
+   ![p](https://github.com/Raferto/Jarkom_Modul2_Lapres_D06/blob/main/images/5.1.png)
+   
+ - Untuk mengetest, pada setiap UML **Client** , jalankan perintah `ifconfig`
+ 
+   ![p](https://github.com/Raferto/Jarkom_Modul2_Lapres_D06/blob/main/images/5.2.png)
+   
+## Soal 6
+ **Membuat Client di subnet 1 mendapatkan peminjaman alamat IP selama 5 menit, dan client pada subnet 3 mendapatkan peminjaman IP selama 10 menit**
+ 
+ - Caranya adalah pada UML **Tuban** disetting pada file `/etc/dhcp/dhcpd.conf` dengan menambahkan `default-lease-time` dan `max-lease-time` sesuai waktu yang diinginkan pada setiap subnet
+ 
+   ![p](https://github.com/Raferto/Jarkom_Modul2_Lapres_D06/blob/main/images/6.1.png)
+   
+ - Untuk mengetest, pada setiap UML **Client** , restart semua networking dengan perintah `service networking restart`
