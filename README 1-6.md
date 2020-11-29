@@ -147,3 +147,24 @@ xterm -T MADIUN -e linux ubd0=MADIUN,jarkom umid=MADIUN eth0=daemon,,,switch3 me
    ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/6.1.png)
    
  - Untuk mengetest, pada setiap UML **Client** , restart semua networking dengan perintah `service networking restart`
+
+## Soal 12
+ **Membuat apabila ingin menggunakan proxy cukup dengan mengetikkan domain janganlupa-ta.d06.pw dan memasukkan port 8080.**
+ 
+ - Pertama, pada UML **Malang** diinstall Bind9 dengan perintah `apt-get install bind9 -y`
+ - Kedua, ditambahkan zone baru pada file `/etc/bind/named.conf.local`, dengan menambahkan
+   ```
+   zone "janganlupa-ta.d06.pw"{
+           type master;
+           file "/etc/bind/praktikum/janganlupa-ta.d06.pw";
+   };
+   ```
+   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/12.1.png)
+   
+ - Terakhir, buat konfigurasi untuk janganlupa-ta.d06.pw, pada `etc/bind/praktikum//janganlupa-ta.d06.pw`, dengan konfig sebagai berikut:
+ 
+   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/12.2.png)
+   
+ - Hasil Test:
+   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/12.3.png)
+   ![p](https://github.com/Raferto/Jarkom_Modul3_Lapres_D06/blob/main/images/12.4.png)
